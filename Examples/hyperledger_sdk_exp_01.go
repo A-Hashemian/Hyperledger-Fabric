@@ -28,5 +28,11 @@ func main() {
         fmt.Println("Failed to create client channel context")
         return
     }
+    
+     client, err := channel.New(clientChannelContext)
+    if err != nil {
+        fmt.Println("Failed to create new client: ", err)
+        return
+    }
   
 }
