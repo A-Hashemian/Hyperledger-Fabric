@@ -49,4 +49,16 @@ func main() {
         return
     }
     
+    
+     // Prepare request
+    request := channel.Request{
+        ChaincodeID: "mychaincode",
+        Fcn:         "getBalance",
+        Args: [][]byte{
+            []byte("user1"),
+        },
+        TxID: "",
+        IsInit: false,
+    }
+    
 }
