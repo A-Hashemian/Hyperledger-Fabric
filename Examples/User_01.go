@@ -64,4 +64,13 @@ func main() {
       // Set user context
     client.SetUserContext(identityOrg1.(msp.SigningIdentity), orgMsp) 
     
+    // Send request and get response
+    response, err := client.Query(request)
+    if err != nil {
+        fmt.Println("Failed to query chaincode: ", err)
+        return
+    }
+
+    fmt.Printf("User1 balance is %s\n", response.Payload)
+    
 }
