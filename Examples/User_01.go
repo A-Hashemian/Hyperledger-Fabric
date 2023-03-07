@@ -61,4 +61,7 @@ func main() {
         IsInit: false,
     }
     
+      // Set user context
+    client.SetUserContext(identityOrg1.(msp.SigningIdentity), orgMsp) 
+    
 }
