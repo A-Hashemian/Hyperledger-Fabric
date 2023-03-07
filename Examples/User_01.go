@@ -11,11 +11,17 @@ import (
 
 
 func main() {
+    
     // Create SDK setup for the integration tests
     sdk, err := fabsdk.New(config.FromFile("./connection.yaml"))
     if err != nil {
         fmt.Println("Failed to create new SDK: ", err)
         return
     }
+    
+    // Prepare client context
+    orgName := "org1"
+    orgAdmin := "Admin"
+    orgMsp := "Org1MSP"
     
 }
