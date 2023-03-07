@@ -43,4 +43,10 @@ func main() {
         return
     }
     
+      identityOrg1, err := userOrg1.Identity()
+    if err != nil {
+        fmt.Println("Failed to get user identity: ", err)
+        return
+    }
+    
 }
