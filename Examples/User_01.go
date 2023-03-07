@@ -74,3 +74,13 @@ func main() {
     fmt.Printf("User1 balance is %s\n", response.Payload)
     
 }
+
+/*
+This code is  used to query the account balance of a user named "user1" from the smart contract named "mychaincode".
+The code first performs the steps to get the SDK configuration and user ID. 
+It then connects to the network from a YAML file with connection information and creates a channel to make the request. 
+Finally it prepares a transaction to make the request, sets the user ID, executes the transaction, and prints the results to the console.
+
+
+
+*/
