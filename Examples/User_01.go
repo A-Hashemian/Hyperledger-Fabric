@@ -36,4 +36,11 @@ func main() {
         return
     }
     
+      // Get user identity
+    userOrg1, err := sdk.Context(fabsdk.WithUser("user1"), fabsdk.WithOrg(orgName))
+    if err != nil {
+        fmt.Println("Failed to get user context: ", err)
+        return
+    }
+    
 }
