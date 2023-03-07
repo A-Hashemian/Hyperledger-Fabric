@@ -17,6 +17,16 @@ func main() {
         fmt.Println("Failed to create new SDK: ", err)
         return
     }
-  
+    
+   // Prepare client context
+    orgName := "org1"
+    orgAdmin := "Admin"
+    orgMsp := "Org1MSP"
+
+    clientChannelContext := sdk.ChannelContext("mychannel", channel.WithUser(orgAdmin), channel.WithOrg(orgName))
+    if clientChannelContext == nil {
+        fmt.Println("Failed to create client channel context")
+        return
+    }
   
 }
