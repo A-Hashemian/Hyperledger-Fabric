@@ -107,3 +107,13 @@ func (s *SmartContract) UpdateAsset(ctx contractapi.TransactionContextInterface,
 	asset := SimpleAsset{
 		AssetID: assetID,
 		Value:   newValue,
+		
+		
+		}
+assetJSON, err := json.Marshal(asset)
+if err != nil {
+	return err
+}
+	
+return ctx.GetStub().PutState(assetID, assetJSON)
+}
