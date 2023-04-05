@@ -63,3 +63,23 @@ func (s *SmartContract) CreateAsset(ctx contractapi.TransactionContextInterface,
 
 	return ctx.GetStub().PutState(assetID, assetJSON)
 }
+
+
+// ReadAsset returns the asset stored in the ledger
+func (s *SmartContract) ReadAsset(ctx contractapi.TransactionContextInterface, assetID string) (*SimpleAsset, error) {
+	assetJSON, err := ctx.GetStub().GetState(assetID)
+	if err != nil {
+		return nil, fmt.Errorf("failed to read asset %s from ledger: %v", assetID, err)
+	}
+	if assetJSON == nil {
+		return nil, fmt.Errorf("the asset %s does not exist", assetID)
+	}
+
+	var asset SimpleAsset
+	err = json.Unmarshal(assetJSON, &asset)
+	if err != nil {
+		return nil, err
+	}
+
+	return &asset, nil
+}
