@@ -128,3 +128,7 @@ return err
 	if !exists {
 return fmt.Errorf("the asset %s does not exist", assetID)
 }
+
+	
+	return ctx.GetStub().DelState(assetID)
+}
