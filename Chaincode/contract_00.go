@@ -124,3 +124,7 @@ exists, err := s.AssetExists(ctx, assetID)
 if err != nil {
 return err
 }
+	
+	if !exists {
+return fmt.Errorf("the asset %s does not exist", assetID)
+}
