@@ -159,3 +159,14 @@ for resultsIterator.HasNext() {
 
 return assets, nil
 }
+
+func main() {
+chaincode, err := contractapi.NewChaincode(&SmartContract{})
+if err != nil {
+log.Panicf("Error creating simple chaincode: %v", err)
+}
+
+if err := chaincode.Start(); err != nil {
+	log.Panicf("Error starting simple chaincode: %v", err)
+}
+}
