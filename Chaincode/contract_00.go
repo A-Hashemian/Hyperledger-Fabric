@@ -132,3 +132,11 @@ return fmt.Errorf("the asset %s does not exist", assetID)
 	
 	return ctx.GetStub().DelState(assetID)
 }
+
+
+// GetAllAssets returns all assets found in the ledger
+func (s *SmartContract) GetAllAssets(ctx contractapi.TransactionContextInterface) ([]*SimpleAsset, error) {
+resultsIterator, err := ctx.GetStub().GetStateByRange("", "")
+if err != nil {
+return nil, err
+}
