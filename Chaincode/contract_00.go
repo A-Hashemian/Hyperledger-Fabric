@@ -93,3 +93,13 @@ func (s *SmartContract) AssetExists(ctx contractapi.TransactionContextInterface,
 
 	return assetJSON != nil, nil
 }
+
+// UpdateAsset updates an existing asset in the ledger
+func (s *SmartContract) UpdateAsset(ctx contractapi.TransactionContextInterface, assetID string, newValue int) error {
+	exists, err := s.AssetExists(ctx, assetID)
+	if err != nil {
+		return err
+	}
+	if !exists {
+		return fmt.Errorf("the asset %s does not exist", assetID)
+	}
