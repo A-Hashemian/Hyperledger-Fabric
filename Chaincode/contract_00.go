@@ -141,3 +141,21 @@ if err != nil {
 return nil, err
 }
 defer resultsIterator.Close()
+
+	var assets []*SimpleAsset
+for resultsIterator.HasNext() {
+	queryResponse, err := resultsIterator.Next()
+	if err != nil {
+		return nil, err
+	}
+
+	var asset SimpleAsset
+	err = json.Unmarshal(queryResponse.Value, &asset)
+	if err != nil {
+		return nil, err
+	}
+	assets = append(assets, &asset)
+}
+
+return assets, nil
+}
