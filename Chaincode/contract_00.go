@@ -40,3 +40,26 @@ func (s *SmartContract) InitLedger(ctx contractapi.TransactionContextInterface) 
 
 	return nil
 }
+
+
+// CreateAsset adds a new asset to the ledger
+func (s *SmartContract) CreateAsset(ctx contractapi.TransactionContextInterface, assetID string, value int) error {
+	exists, err := s.AssetExists(ctx, assetID)
+	if err != nil {
+		return err
+	}
+	if exists {
+		return fmt.Errorf("the asset %s already exists", assetID)
+	}
+
+	asset := SimpleAsset{
+		AssetID: assetID,
+		Value:   value,
+	}
+	assetJSON, err := json.Marshal(asset)
+	if err != nil {
+		return err
+	}
+
+	return ctx.GetStub().PutState(assetID, assetJSON)
+}
