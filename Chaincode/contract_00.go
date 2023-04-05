@@ -83,3 +83,13 @@ func (s *SmartContract) ReadAsset(ctx contractapi.TransactionContextInterface, a
 
 	return &asset, nil
 }
+
+// AssetExists returns true when asset with given ID exists in the ledger
+func (s *SmartContract) AssetExists(ctx contractapi.TransactionContextInterface, assetID string) (bool, error) {
+	assetJSON, err := ctx.GetStub().GetState(assetID)
+	if err != nil {
+		return false, fmt.Errorf("failed to read asset %s from ledger: %v", assetID, err)
+	}
+
+	return assetJSON != nil, nil
+}
