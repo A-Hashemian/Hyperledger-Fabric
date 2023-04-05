@@ -103,3 +103,7 @@ func (s *SmartContract) UpdateAsset(ctx contractapi.TransactionContextInterface,
 	if !exists {
 		return fmt.Errorf("the asset %s does not exist", assetID)
 	}
+
+	asset := SimpleAsset{
+		AssetID: assetID,
+		Value:   newValue,
