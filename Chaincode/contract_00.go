@@ -140,3 +140,4 @@ resultsIterator, err := ctx.GetStub().GetStateByRange("", "")
 if err != nil {
 return nil, err
 }
+defer resultsIterator.Close()
