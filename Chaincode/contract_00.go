@@ -117,3 +117,10 @@ if err != nil {
 	
 return ctx.GetStub().PutState(assetID, assetJSON)
 }
+
+// DeleteAsset deletes an existing asset from the ledger
+func (s *SmartContract) DeleteAsset(ctx contractapi.TransactionContextInterface, assetID string) error {
+exists, err := s.AssetExists(ctx, assetID)
+if err != nil {
+return err
+}
