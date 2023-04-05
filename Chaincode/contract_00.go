@@ -29,3 +29,14 @@ func (s *SmartContract) InitLedger(ctx contractapi.TransactionContextInterface) 
 		{AssetID: "asset4", Value: 400},
 		{AssetID: "asset5", Value: 500},
 	}
+	
+	
+	for _, asset := range assets {
+		err := ctx.GetStub().PutState(asset.AssetID, []byte(fmt.Sprintf("%d", asset.Value)))
+		if err != nil {
+			return fmt.Errorf("failed to put asset %s on ledger: %v", asset.AssetID, err)
+		}
+	}
+
+	return nil
+}
